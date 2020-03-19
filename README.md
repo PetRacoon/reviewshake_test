@@ -57,3 +57,4 @@ I guess the best solution for this will be proxy and user-agent rotation.
 4) Reviews pagination requires additional headers configuratio.
 5) There are several issues with postgresql database writing:
   Because of async scrapy i have some issues with writing to database. The best solution here i guess is another "worker" which will store all collected data via some kind of Bulk.
+6) P.S. I decided not to do additional work for storage module, cause i wanted to do this as fast as possible.
