@@ -2,6 +2,7 @@ import json
 from urllib.parse import urlparse
 
 import scrapy
+from scrapy.exceptions import CloseSpider
 import jmespath
 
 from reviewshake_test.items import CompanyItemLoader, UsReviewItemLoader, PtReviewItemLoader
@@ -18,7 +19,7 @@ class YelpBaseSpider(scrapy.Spider):
     def __init__(self, profile_url=None, list_url=None, *args, **kwargs):
         if not(profile_url or list_url):
             self.logger.error('Missing required profile_url or list_url')
-            return
+            raise CloseSpider('Missing required profile url or list url')
 
         super(YelpBaseSpider, self).__init__(*args, **kwargs)
         self._start_conf = (profile_url, self.parse) if profile_url else (list_url, self.parse_listing)
